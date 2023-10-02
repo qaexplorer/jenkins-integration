@@ -1,0 +1,198 @@
+{
+	"info": {
+		"_postman_id": "7d49804a-b622-432b-8b83-ce0c8d6ec9fc",
+		"name": "api-json-server-collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19382493"
+	},
+	"item": [
+		{
+			"name": "Create employee",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify response code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"var reqData = JSON.parse(pm.request.body);",
+							"pm.collectionVariables.set(\"employeeId\",reqData.id);",
+							"pm.collectionVariables.set(\"employeeName\",reqData.employee_name);",
+							"pm.collectionVariables.set(\"employeeSalary\",reqData.employee_salary);",
+							"pm.collectionVariables.set(\"employeeAge\",reqData.employee_age);",
+							"pm.collectionVariables.set(\"profileImage\",reqData.profile_image);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 5,\r\n    \"employee_name\": \"automation employee\",\r\n    \"employee_salary\": 1240,\r\n    \"employee_age\": 61,\r\n    \"profile_image\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/employees",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get employee",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify response code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Verify the employee details with input data\",()=>{",
+							"    var responseJson = pm.response.json();",
+							"    pm.expect(responseJson.id).to.be.eql(pm.collectionVariables.get('employeeId'));",
+							"    pm.expect(responseJson.employee_name).to.be.eql(pm.collectionVariables.get('employeeName'));",
+							"    pm.expect(responseJson.employee_salary).to.be.eql(pm.collectionVariables.get('employeeSalary'));",
+							"    pm.expect(responseJson.employee_age).to.be.eql(pm.collectionVariables.get('employeeAge'));",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/employees/{{employeeId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"employees",
+						"{{employeeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete employee",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/employees/{{employeeId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"employees",
+						"{{employeeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify the delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify response code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/employees/{{employeeId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"employees",
+						"{{employeeId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "employeeId",
+			"value": ""
+		},
+		{
+			"key": "employeeName",
+			"value": ""
+		},
+		{
+			"key": "employeeSalary",
+			"value": ""
+		},
+		{
+			"key": "employeeAge",
+			"value": ""
+		},
+		{
+			"key": "profileImage",
+			"value": ""
+		}
+	]
+}
