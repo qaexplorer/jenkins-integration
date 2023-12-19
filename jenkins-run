@@ -3,9 +3,9 @@ pipeline {
   stages {
   stage('Test'){
             steps {
-                sh 'npm install'
-                sh 'npm install -g newman'
-                sh 'npm install -g newman-reporter-htmlextra'
+                bat 'npm install'
+                bat 'npm install -g newman'
+                bat 'npm install -g newman-reporter-htmlextra'
             }
         }
     stage('run collection') {
