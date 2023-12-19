@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "collection-runner-jenkins",
   "scripts": {
-    "newman-tests": "newman run postman-collections/json-server-test/json-server-api-test_collection.json -r cli,htmlextra --reporter-htmlextra-export ./results/collection_run_output.html"
+    "newman-tests": "newman run ./postman-collections/json-server-test/json-server-api-test_collection.json -r cli,htmlextra --reporter-htmlextra-export ./results/collection_run_output.html"
   },
   "author": "Test Author",
   "dependencies": {
