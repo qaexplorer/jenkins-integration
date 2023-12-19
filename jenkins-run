@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('run collection') {
       steps {
-        sh 'newman run -v ${WORKSPACE}:/etc/newman --workdir /etc/newman -t postman-collections/json-server-test/json-server-api-test_collection.json --color off --disable-unicode'
+        bat 'newman run -v ${WORKSPACE}:/etc/newman --workdir /etc/newman -t postman-collections/json-server-test/json-server-api-test_collection.json --color off --disable-unicode'
       }
     }
   }
