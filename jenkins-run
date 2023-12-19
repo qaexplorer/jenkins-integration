@@ -1,6 +1,13 @@
 pipeline {
   agent any
   stages {
+  stage('Test'){
+            steps {
+                sh 'npm install'
+                sh 'npm install -g newman'
+                sh 'npm install -g newman-reporter-htmlextra'
+            }
+        }
     stage('run collection') {
       steps {
         bat 'newman run -v ${WORKSPACE}:/etc/newman --workdir /etc/newman -t postman-collections/json-server-test/json-server-api-test_collection.json --color off --disable-unicode'
