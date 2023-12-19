@@ -1,12 +1,9 @@
 {
-  "name": "postman-newman-jenkins",
+  "name": "postman-newman-Jenkins",
   "version": "1.0.0",
-  "description": "My Test Project",
-  "directories": {
-    "tests": "tests"
-  },
+  "description": "collection-runner-jenkins",
   "scripts": {
-    "newman-tests": "newman run postman-collections/json-server-test/json-server-api-test_collection.json --reporters cli,junit --reporter-junit-export newman.xml --insecure"
+    "newman-tests": "newman run postman-collections/json-server-test/json-server-api-test_collection.json -r cli,htmlextra --reporter-htmlextra-export ./results/collection_run_output.html"
   },
   "author": "Test Author",
   "dependencies": {
